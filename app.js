@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Product = require("./models/productModels");
-const product = require("./models/productModels");
 const app = express();
 
 app.use(express.json());
@@ -39,7 +38,7 @@ app.get("/", (req, res) => {
 // creating product and saved into database
 app.post("/product", async (req, res) => {
 	try {
-		const product = await Product.create(req.body);
+		let product = await Product.create(req.body);
 		res.status(200).json(product);
 	} catch (error) {
 		console.log(error.message);
@@ -50,7 +49,7 @@ app.post("/product", async (req, res) => {
 // getting all documents or 'records' from mongoDB
 app.get("/product", async (req, res) => {
 	try {
-		const product = await Product.find({});
+		let product = await Product.find({});
 		res.status(200).json(product);
 	} catch (error) {
 		console.log(error.message);
@@ -60,8 +59,8 @@ app.get("/product", async (req, res) => {
 // getting one documents or 'records' by ID from mongoDB
 app.get("/product/:id", async (req, res) => {
 	try {
-		const { id } = req.params;
-		const product = await Product.findById(id);
+		let { id } = req.params;
+		let product = await Product.findById(id);
 		res.status(200).json(product);
 	} catch (error) {
 		console.log(error.message);
@@ -71,8 +70,8 @@ app.get("/product/:id", async (req, res) => {
 // updating one documents or 'records' by ID to mongoDB
 app.put("/product/:id", async (req, res) => {
 	try {
-		const { id } = req.params;
-		const product = await Product.findByIdAndUpdate(id, req.body);
+		let { id } = req.params;
+		let product = await Product.findByIdAndUpdate(id, req.body);
 		// show error message if nout found a document!
 		if (!product) {
 			res.status(404).json({ message: `found product with Id: ${id}` });
@@ -89,8 +88,8 @@ app.put("/product/:id", async (req, res) => {
 // deleting one documents or 'records' by ID from mongoDB
 app.delete("/product/:id", async (req, res) => {
 	try {
-		const { id } = req.params;
-		const product = await Product.findByIdAndDelete(id, req.body);
+		let { id } = req.params;
+		let product = await Product.findByIdAndDelete(id, req.body);
 		// show error message if nout found a document!
 		if (!product) {
 			res.status(404).json({ message: `found product with Id: ${id}` });
