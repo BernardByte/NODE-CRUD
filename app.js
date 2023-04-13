@@ -10,8 +10,8 @@ app.use(express.urlencoded({extended:false}))
 
 // connecting to MongoDB by mongoose
 mongoose
-	.connect(
-		"mongodb+srv://imran:lNVkk6m0uGc7w9Rr@cluster0.uiy5g.mongodb.net/Testing?retryWrites=true&w=majority",
+.connect(
+	"mongodb+srv://imran:lNVkk6m0uGc7w9Rr@cluster0.uiy5g.mongodb.net/Testing?retryWrites=true&w=majority",
 		{
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
